@@ -12,29 +12,29 @@ Ship::Ship(eufe::Ship* ship): Item(ship)
 }
 
 
-Module Ship::addModule(TypeID typeID)
+Module^ Ship::addModule(TypeID typeID)
 {
-	return Module(dynamic_cast<eufe::Ship*>(item_)->addModule(typeID));
+	return gcnew Module(dynamic_cast<eufe::Ship*>(item_)->addModule(typeID));
 }
 
-Module Ship::replaceModule(Module% oldModule, TypeID typeID)
+Module^ Ship::replaceModule(Module^ oldModule, TypeID typeID)
 {
-	return Module(dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule.getItem()), typeID));
+	return gcnew Module(dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule->getItem()), typeID));
 }
 
-void Ship::removeModule(Module% module)
+void Ship::removeModule(Module^ module)
 {
-	dynamic_cast<eufe::Ship*>(item_)->removeModule(dynamic_cast<eufe::Module*>(module.getItem()));
+	dynamic_cast<eufe::Ship*>(item_)->removeModule(dynamic_cast<eufe::Module*>(module->getItem()));
 }
 
-Drone Ship::addDrone(TypeID typeID)
+Drone^ Ship::addDrone(TypeID typeID)
 {
-	return Drone(dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID));
+	return gcnew Drone(dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID));
 }
 
-void Ship::removeDrone(Drone% drone)
+void Ship::removeDrone(Drone^ drone)
 {
-	dynamic_cast<eufe::Ship*>(item_)->removeDrone(dynamic_cast<eufe::Drone*>(drone.getItem()));
+	dynamic_cast<eufe::Ship*>(item_)->removeDrone(dynamic_cast<eufe::Drone*>(drone->getItem()));
 }
 
 array<Module^>^ Ship::getModules()
@@ -72,9 +72,9 @@ array<Drone^>^  Ship::getDrones()
 }
 
 		
-void Ship::setDamagePattern(DamagePattern% damagePattern)
+void Ship::setDamagePattern(DamagePattern^ damagePattern)
 {
-	dynamic_cast<eufe::Ship*>(item_)->setDamagePattern(damagePattern.getDamagePattern());
+	dynamic_cast<eufe::Ship*>(item_)->setDamagePattern(damagePattern->getDamagePattern());
 }
 
 		
@@ -196,40 +196,40 @@ float Ship::getCapRecharge()
 
 		
 //Tank
-Resistances Ship::getResistances()
+Resistances^ Ship::getResistances()
 {
-	return Resistances(dynamic_cast<eufe::Ship*>(item_)->getResistances());
+	return gcnew Resistances(dynamic_cast<eufe::Ship*>(item_)->getResistances());
 }
 
-Tank Ship::getTank()
+Tank^ Ship::getTank()
 {
-	return Tank(dynamic_cast<eufe::Ship*>(item_)->getTank());
+	return gcnew Tank(dynamic_cast<eufe::Ship*>(item_)->getTank());
 }
 
-Tank Ship::getEffectiveTank()
+Tank^ Ship::getEffectiveTank()
 {
-	return Tank(dynamic_cast<eufe::Ship*>(item_)->getEffectiveTank());
+	return gcnew Tank(dynamic_cast<eufe::Ship*>(item_)->getEffectiveTank());
 }
 
-Tank Ship::getSustainableTank()
+Tank^ Ship::getSustainableTank()
 {
-	return Tank(dynamic_cast<eufe::Ship*>(item_)->getSustainableTank());
+	return gcnew Tank(dynamic_cast<eufe::Ship*>(item_)->getSustainableTank());
 }
 
-Tank Ship::getEffectiveSustainableTank()
+Tank^ Ship::getEffectiveSustainableTank()
 {
-	return Tank(dynamic_cast<eufe::Ship*>(item_)->getEffectiveSustainableTank());
+	return gcnew Tank(dynamic_cast<eufe::Ship*>(item_)->getEffectiveSustainableTank());
 }
 
 		
-HitPoints Ship::getHitPoints()
+HitPoints^ Ship::getHitPoints()
 {
-	return HitPoints(dynamic_cast<eufe::Ship*>(item_)->getHitPoints());
+	return gcnew HitPoints(dynamic_cast<eufe::Ship*>(item_)->getHitPoints());
 }
 
-HitPoints Ship::getEffectiveHitPoints()
+HitPoints^ Ship::getEffectiveHitPoints()
 {
-	return HitPoints(dynamic_cast<eufe::Ship*>(item_)->getEffectiveHitPoints());
+	return gcnew HitPoints(dynamic_cast<eufe::Ship*>(item_)->getEffectiveHitPoints());
 }
 
 		

@@ -12,12 +12,12 @@ namespace eufenet {
 	public:
 		Engine(SqlConnector^ sqlConnector);
 		virtual ~Engine(void);
-		Area setArea(TypeID typeID);
-		ControlTower setControlTower(TypeID typeID);
+		Area^ setArea(TypeID typeID);
+		ControlTower^ setControlTower(TypeID typeID);
 		void clearArea();
-		Gang getGang();
-		Area getArea();
-		ControlTower getControlTower();
+		Gang^ getGang();
+		Area^ getArea();
+		ControlTower^ getControlTower();
 	private:
 		eufe::Engine* engine_;
 		SqlConnector^ sqlConnector_;

@@ -26,9 +26,9 @@ TypeID Item::getCategoryID()
 	return item_->getCategoryID();
 }
 
-ItemAttribute Item::getAttribute(TypeID attributeID)
+ItemAttribute^ Item::getAttribute(TypeID attributeID)
 {
-	return ItemAttribute(item_->getAttribute(attributeID));
+	return gcnew ItemAttribute(item_->getAttribute(attributeID));
 }
 
 eufe::Item* Item::getItem()

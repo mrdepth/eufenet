@@ -14,7 +14,7 @@ namespace eufenet {
 		TypeID getTypeID();
 		TypeID getGroupID();
 		TypeID getCategoryID();
-		ItemAttribute getAttribute(TypeID attributeID);
+		ItemAttribute^ getAttribute(TypeID attributeID);
 		eufe::Item* getItem();
 	protected:
 		eufe::Item* item_;

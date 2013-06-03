@@ -11,15 +11,15 @@ namespace eufenet {
 		Gang(eufe::Gang* gang);
 
 		array<Character^>^ getPilots();
-		Character addPilot();
-		void removePilot(Character% character);
+		Character^ addPilot();
+		void removePilot(Character^ character);
 		
-		Character getFleetBooster();
-		Character getWingBooster();
-		Character getSquadBooster();
-		void setFleetBooster(Character% fleetBooster);
-		void setWingBooster(Character% wingBooster);
-		void setSquadBooster(Character% squadBooster);
+		Character^ getFleetBooster();
+		Character^ getWingBooster();
+		Character^ getSquadBooster();
+		void setFleetBooster(Character^ fleetBooster);
+		void setWingBooster(Character^ wingBooster);
+		void setSquadBooster(Character^ squadBooster);
 		void removeFleetBooster();
 		void removeWingBooster();
 		void removeSquadBooster();

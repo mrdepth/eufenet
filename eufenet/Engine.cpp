@@ -15,14 +15,14 @@ Engine::~Engine(void)
 	delete sqlConnector_;
 }
 
-Area Engine::setArea(TypeID typeID)
+Area^ Engine::setArea(TypeID typeID)
 {
-	return Area(engine_->setArea(typeID));
+	return gcnew Area(engine_->setArea(typeID));
 }
 
-ControlTower Engine::setControlTower(TypeID typeID)
+ControlTower^ Engine::setControlTower(TypeID typeID)
 {
-	return ControlTower(engine_->setControlTower(typeID));
+	return gcnew ControlTower(engine_->setControlTower(typeID));
 }
 
 void Engine::clearArea()
@@ -30,17 +30,17 @@ void Engine::clearArea()
 	engine_->clearArea();
 }
 
-Gang Engine::getGang()
+Gang^ Engine::getGang()
 {
-	return Gang(engine_->getGang());
+	return gcnew Gang(engine_->getGang());
 }
 
-Area Engine::getArea()
+Area^ Engine::getArea()
 {
-	return Area(engine_->getArea());
+	return gcnew Area(engine_->getArea());
 }
 
-ControlTower Engine::getControlTower()
+ControlTower^ Engine::getControlTower()
 {
-	return ControlTower(engine_->getControlTower());
+	return gcnew ControlTower(engine_->getControlTower());
 }

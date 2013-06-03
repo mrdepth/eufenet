@@ -24,18 +24,18 @@ namespace eufenet {
 		Ship(const Ship% other);
 		Ship(eufe::Ship* ship);
 		
-		Module addModule(TypeID typeID);
-		Module replaceModule(Module% oldModule, TypeID typeID);
-		void removeModule(Module% module);
+		Module^ addModule(TypeID typeID);
+		Module^ replaceModule(Module^ oldModule, TypeID typeID);
+		void removeModule(Module^ module);
 		
-		Drone addDrone(TypeID typeID);
-		void removeDrone(Drone% drone);
+		Drone^ addDrone(TypeID typeID);
+		void removeDrone(Drone^ drone);
 		
 		array<Module^>^ getModules();
 		array<Module^>^ getModules(Module::Slot slot);
 		array<Drone^>^  getDrones();
 		
-		void setDamagePattern(DamagePattern% damagePattern);
+		void setDamagePattern(DamagePattern^ damagePattern);
 		
 		//Calculations
 		
@@ -67,14 +67,14 @@ namespace eufenet {
 		float getCapRecharge();
 		
 		//Tank
-		Resistances getResistances();
-		Tank getTank();
-		Tank getEffectiveTank();
-		Tank getSustainableTank();
-		Tank getEffectiveSustainableTank();
+		Resistances^ getResistances();
+		Tank^ getTank();
+		Tank^ getEffectiveTank();
+		Tank^ getSustainableTank();
+		Tank^ getEffectiveSustainableTank();
 		
-		HitPoints getHitPoints();
-		HitPoints getEffectiveHitPoints();
+		HitPoints^ getHitPoints();
+		HitPoints^ getEffectiveHitPoints();
 		
 		float getShieldRecharge();
 
