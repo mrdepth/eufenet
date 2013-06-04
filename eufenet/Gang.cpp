@@ -25,7 +25,8 @@ array<Character^>^ Gang::getPilots()
 
 Character^ Gang::addPilot()
 {
-	return gcnew Character(dynamic_cast<eufe::Gang*>(item_)->addPilot());
+	auto character = dynamic_cast<eufe::Gang*>(item_)->addPilot();
+	return character ? gcnew Character(character) : nullptr;
 }
 
 void Gang::removePilot(Character^ character)
@@ -36,17 +37,20 @@ void Gang::removePilot(Character^ character)
 		
 Character^ Gang::getFleetBooster()
 {
-	return gcnew Character(dynamic_cast<eufe::Gang*>(item_)->getFleetBooster());
+	auto character = dynamic_cast<eufe::Gang*>(item_)->getFleetBooster();
+	return character ? gcnew Character(character) : nullptr;
 }
 
 Character^ Gang::getWingBooster()
 {
-	return gcnew Character(dynamic_cast<eufe::Gang*>(item_)->getWingBooster());
+	auto character = dynamic_cast<eufe::Gang*>(item_)->getWingBooster();
+	return character ? gcnew Character(character) : nullptr;
 }
 
 Character^ Gang::getSquadBooster()
 {
-	return gcnew Character(dynamic_cast<eufe::Gang*>(item_)->getSquadBooster());
+	auto character = dynamic_cast<eufe::Gang*>(item_)->getSquadBooster();
+	return character ? gcnew Character(character) : nullptr;
 }
 
 void Gang::setFleetBooster(Character^ fleetBooster)

@@ -16,17 +16,20 @@ Character::Character(eufe::Character* character): Item(character)
 
 Ship^ Character::getShip()
 {
-	return gcnew Ship(dynamic_cast<eufe::Character*>(item_)->getShip());
+	auto ship = dynamic_cast<eufe::Character*>(item_)->getShip();
+	return ship ? gcnew Ship(ship) : nullptr;
 }
 
 Ship^ Character::setShip(TypeID typeID)
 {
-	return gcnew Ship(dynamic_cast<eufe::Character*>(item_)->setShip(typeID));
+	auto ship = dynamic_cast<eufe::Character*>(item_)->setShip(typeID);
+	return ship ? gcnew Ship(ship) : nullptr;
 }
 
 Skill^ Character::getSkill(TypeID typeID)
 {
-	return gcnew Skill(dynamic_cast<eufe::Character*>(item_)->getSkill(typeID));
+	auto skill = dynamic_cast<eufe::Character*>(item_)->getSkill(typeID);
+	return skill ? gcnew Skill(skill) : nullptr;
 }
 		
 bool Character::emptyImplantSlot(int slot)
@@ -41,22 +44,26 @@ bool Character::emptyBoosterSlot(int slot)
 
 Implant^ Character::getImplant(int slot)
 {
-	return gcnew Implant(dynamic_cast<eufe::Character*>(item_)->getImplant(slot));
+	auto implant = dynamic_cast<eufe::Character*>(item_)->getImplant(slot);
+	return implant ? gcnew Implant(implant) : nullptr;
 }
 
 Booster^ Character::getBooster(int slot)
 {
-	return gcnew Booster(dynamic_cast<eufe::Character*>(item_)->getBooster(slot));
+	auto booster = dynamic_cast<eufe::Character*>(item_)->getBooster(slot);
+	return booster ? gcnew Booster(booster) : nullptr;
 }
 
 Implant^ Character::addImplant(eufe::TypeID typeID)
 {
-	return gcnew Implant(dynamic_cast<eufe::Character*>(item_)->addImplant(typeID));
+	auto implant = dynamic_cast<eufe::Character*>(item_)->addImplant(typeID);
+	return implant ? gcnew Implant(implant) : nullptr;
 }
 
 Booster^ Character::addBooster(TypeID typeID)
 {
-	return gcnew Booster(dynamic_cast<eufe::Character*>(item_)->addBooster(typeID));
+	auto booster = dynamic_cast<eufe::Character*>(item_)->addBooster(typeID);
+	return booster ? gcnew Booster(booster) : nullptr;
 }
 
 void Character::removeImplant(Implant^ implant)

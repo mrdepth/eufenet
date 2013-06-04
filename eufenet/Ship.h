@@ -25,6 +25,7 @@ namespace eufenet {
 		Ship(eufe::Ship* ship);
 		
 		Module^ addModule(TypeID typeID);
+		array<Module^>^ addModules(array<TypeID>^ typeIDs);
 		Module^ replaceModule(Module^ oldModule, TypeID typeID);
 		void removeModule(Module^ module);
 		

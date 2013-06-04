@@ -28,7 +28,8 @@ TypeID Item::getCategoryID()
 
 ItemAttribute^ Item::getAttribute(TypeID attributeID)
 {
-	return gcnew ItemAttribute(item_->getAttribute(attributeID));
+	auto attribute = item_->getAttribute(attributeID);
+	return attribute ? gcnew ItemAttribute(attribute) : nullptr;
 }
 
 eufe::Item* Item::getItem()
