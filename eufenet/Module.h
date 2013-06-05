@@ -1,7 +1,10 @@
 #pragma once
 #include "item.h"
+#include "Charge.h"
 
 namespace eufenet {
+
+	ref class Ship;
 
 	public ref class Module: public Item
 	{
@@ -34,7 +37,41 @@ namespace eufenet {
 
 		Module(const Module% other);
 		Module(eufe::Module* module);
-		virtual ~Module(void);
+
+		Slot getSlot();
+		Hardpoint getHardpoint();
+		bool canHaveState(State state);
+		State getState();
+		void setState(State state);
+
+		Charge^ setCharge(TypeID typeID);
+		void clearCharge();
+		Charge^ getCharge();
+		array<TypeID>^ getChargeGroups();
+		int getChargeSize();
+		void removeCharge();
+		bool requireTarget();
+		void setTarget(Ship^ target);
+		void clearTarget();
+		Ship^ getTarget();
+		float getReloadTime();
+		
+		//Calculations
+		
+		float getCycleTime();
+		float getRawCycleTime();
+		
+		int getCharges();
+		int getShots();
+		float getCapUse();
+		
+		float getVolley();
+		float getDps();
+		float getMaxRange();
+		float getFalloff();
+		float getTrackingSpeed();
+		
+		float getLifeTime();
 	};
 
 }
