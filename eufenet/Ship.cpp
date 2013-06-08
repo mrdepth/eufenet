@@ -14,7 +14,7 @@ Ship::Ship(eufe::Ship* ship): Item(ship)
 
 Module^ Ship::addModule(TypeID typeID)
 {
-	auto module = dynamic_cast<eufe::Ship*>(item_)->addModule(typeID);
+	eufe::Module*  module = dynamic_cast<eufe::Ship*>(item_)->addModule(typeID);
 	return module ? gcnew Module(module) : nullptr;
 }
 
@@ -24,18 +24,20 @@ array<Module^>^ Ship::addModules(array<TypeID>^ typeIDs)
 	for each (TypeID typeID in typeIDs)
 		list.push_back(typeID);
 
-	auto modules = dynamic_cast<eufe::Ship*>(item_)->addModules(list);
+	eufe::ModulesList modules = dynamic_cast<eufe::Ship*>(item_)->addModules(list);
 	array<Module^>^ arr = gcnew array<Module^> (modules.size());
 
-	int i = 0;
-	for (auto module: modules)
-		arr[i++] = module ? gcnew Module(module) : nullptr;
+	int n = 0;
+
+	eufe::ModulesList::const_iterator i, end = modules.end();
+	for (i = modules.begin(); i != end; i++)
+		arr[n++] = *i ? gcnew Module(*i) : nullptr;
 	return arr;
 }
 
 Module^ Ship::replaceModule(Module^ oldModule, TypeID typeID)
 {
-	auto module = dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule->getItem()), typeID);
+	eufe::Module* module = dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule->getItem()), typeID);
 	return module ? gcnew Module(module) : nullptr;
 }
 
@@ -46,7 +48,7 @@ void Ship::removeModule(Module^ module)
 
 Drone^ Ship::addDrone(TypeID typeID)
 {
-	auto drone = dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID);
+	eufe::Drone* drone = dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID);
 	return drone ? gcnew Drone(drone) : nullptr;
 }
 
@@ -57,12 +59,14 @@ void Ship::removeDrone(Drone^ drone)
 
 array<Module^>^ Ship::getModules()
 {
-	auto modules = dynamic_cast<eufe::Ship*>(item_)->getModules();
+	eufe::ModulesList modules = dynamic_cast<eufe::Ship*>(item_)->getModules();
 	array<Module^>^ arr = gcnew array<Module^> (modules.size());
 
-	int i = 0;
-	for (auto module: modules)
-		arr[i++] = gcnew Module(module);
+	int n = 0;
+
+	eufe::ModulesList::const_iterator i, end = modules.end();
+	for (i = modules.begin(); i != end; i++)
+		arr[n++] = *i ? gcnew Module(*i) : nullptr;
 	return arr;
 }
 
@@ -72,20 +76,24 @@ array<Module^>^ Ship::getModules(Module::Slot slot)
 	dynamic_cast<eufe::Ship*>(item_)->getModules(static_cast<eufe::Module::Slot>(slot), std::inserter(modules, modules.begin()));
 	array<Module^>^ arr = gcnew array<Module^> (modules.size());
 
-	int i = 0;
-	for (auto module: modules)
-		arr[i++] = gcnew Module(module);
+	int n = 0;
+
+	eufe::ModulesList::const_iterator i, end = modules.end();
+	for (i = modules.begin(); i != end; i++)
+		arr[n++] = *i ? gcnew Module(*i) : nullptr;
 	return arr;
 }
 
 array<Drone^>^  Ship::getDrones()
 {
-	auto drones = dynamic_cast<eufe::Ship*>(item_)->getDrones();
+	eufe::DronesList drones = dynamic_cast<eufe::Ship*>(item_)->getDrones();
 	array<Drone^>^ arr = gcnew array<Drone^> (drones.size());
 
-	int i = 0;
-	for (auto drone: drones)
-		arr[i++] = gcnew Drone(drone);
+	int n = 0;
+
+	eufe::DronesList::const_iterator i, end = drones.end();
+	for (i = drones.begin(); i != end; i++)
+		arr[n++] = *i ? gcnew Drone(*i) : nullptr;
 	return arr;
 }
 

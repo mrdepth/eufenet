@@ -16,19 +16,19 @@ Character::Character(eufe::Character* character): Item(character)
 
 Ship^ Character::getShip()
 {
-	auto ship = dynamic_cast<eufe::Character*>(item_)->getShip();
+	eufe::Ship* ship = dynamic_cast<eufe::Character*>(item_)->getShip();
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 
 Ship^ Character::setShip(TypeID typeID)
 {
-	auto ship = dynamic_cast<eufe::Character*>(item_)->setShip(typeID);
+	eufe::Ship* ship = dynamic_cast<eufe::Character*>(item_)->setShip(typeID);
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 
 Skill^ Character::getSkill(TypeID typeID)
 {
-	auto skill = dynamic_cast<eufe::Character*>(item_)->getSkill(typeID);
+	eufe::Skill* skill = dynamic_cast<eufe::Character*>(item_)->getSkill(typeID);
 	return skill ? gcnew Skill(skill) : nullptr;
 }
 		
@@ -44,25 +44,25 @@ bool Character::emptyBoosterSlot(int slot)
 
 Implant^ Character::getImplant(int slot)
 {
-	auto implant = dynamic_cast<eufe::Character*>(item_)->getImplant(slot);
+	eufe::Implant* implant = dynamic_cast<eufe::Character*>(item_)->getImplant(slot);
 	return implant ? gcnew Implant(implant) : nullptr;
 }
 
 Booster^ Character::getBooster(int slot)
 {
-	auto booster = dynamic_cast<eufe::Character*>(item_)->getBooster(slot);
+	eufe::Booster* booster = dynamic_cast<eufe::Character*>(item_)->getBooster(slot);
 	return booster ? gcnew Booster(booster) : nullptr;
 }
 
 Implant^ Character::addImplant(eufe::TypeID typeID)
 {
-	auto implant = dynamic_cast<eufe::Character*>(item_)->addImplant(typeID);
+	eufe::Implant* implant = dynamic_cast<eufe::Character*>(item_)->addImplant(typeID);
 	return implant ? gcnew Implant(implant) : nullptr;
 }
 
 Booster^ Character::addBooster(TypeID typeID)
 {
-	auto booster = dynamic_cast<eufe::Character*>(item_)->addBooster(typeID);
+	eufe::Booster* booster = dynamic_cast<eufe::Character*>(item_)->addBooster(typeID);
 	return booster ? gcnew Booster(booster) : nullptr;
 }
 
@@ -78,23 +78,27 @@ void Character::removeBooster(Booster^ booster)
 
 array<Implant^>^ Character::getImplants()
 {
-	auto implants = dynamic_cast<eufe::Character*>(item_)->getImplants();
+	eufe::ImplantsList implants = dynamic_cast<eufe::Character*>(item_)->getImplants();
 	array<Implant^>^ arr = gcnew array<Implant^> (implants.size());
 
-	int i = 0;
-	for (auto implant: implants)
-		arr[i++] = gcnew Implant(implant);
+	int n = 0;
+
+	eufe::ImplantsList::const_iterator i, end = implants.end();
+	for (i = implants.begin(); i != end; i++)
+		arr[n++] = gcnew Implant(*i);
 	return arr;
 }
 
 array<Booster^>^ Character::getBoosters()
 {
-	auto boosters = dynamic_cast<eufe::Character*>(item_)->getBoosters();
+	eufe::BoostersList boosters = dynamic_cast<eufe::Character*>(item_)->getBoosters();
 	array<Booster^>^ arr = gcnew array<Booster^> (boosters.size());
 
-	int i = 0;
-	for (auto booster: boosters)
-		arr[i++] = gcnew Booster(booster);
+	int n = 0;
+
+	eufe::BoostersList::const_iterator i, end = boosters.end();
+	for (i = boosters.begin(); i != end; i++)
+		arr[n++] = gcnew Booster(*i);
 	return arr;
 }
 

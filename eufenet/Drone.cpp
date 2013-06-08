@@ -25,7 +25,7 @@ void Drone::clearTarget()
 
 Ship^ Drone::getTarget()
 {
-	auto ship = dynamic_cast<eufe::Drone*>(item_)->getTarget();
+	eufe::Ship* ship = dynamic_cast<eufe::Drone*>(item_)->getTarget();
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 
@@ -37,7 +37,7 @@ bool Drone::dealsDamage()
 
 Charge^ Drone::getCharge()
 {
-	auto charge = dynamic_cast<eufe::Drone*>(item_)->getCharge();
+	eufe::Charge* charge = dynamic_cast<eufe::Drone*>(item_)->getCharge();
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 

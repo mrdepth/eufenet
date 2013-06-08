@@ -41,7 +41,7 @@ void Module::setState(State state)
 
 Charge^ Module::setCharge(TypeID typeID)
 {
-	auto charge = dynamic_cast<eufe::Module*>(item_)->setCharge(typeID);
+	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->setCharge(typeID);
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 
@@ -52,18 +52,20 @@ void Module::clearCharge()
 
 Charge^ Module::getCharge()
 {
-	auto charge = dynamic_cast<eufe::Module*>(item_)->getCharge();
+	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->getCharge();
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 
 array<TypeID>^ Module::getChargeGroups()
 {
-	auto chargeGroups = dynamic_cast<eufe::Module*>(item_)->getChargeGroups();
+	std::vector<TypeID> chargeGroups = dynamic_cast<eufe::Module*>(item_)->getChargeGroups();
 	array<TypeID>^ arr = gcnew array<TypeID> (chargeGroups.size());
 
-	int i = 0;
-	for (auto typeID: chargeGroups)
-		arr[i++] = typeID;
+	int n = 0;
+
+	std::vector<TypeID>::const_iterator i, end = chargeGroups.end();
+	for (i = chargeGroups.begin(); i != end; i++)
+		arr[n++] = *i;
 	return arr;
 }
 
@@ -94,7 +96,7 @@ void Module::clearTarget()
 
 Ship^ Module::getTarget()
 {
-	auto ship = dynamic_cast<eufe::Module*>(item_)->getTarget();
+	eufe::Ship* ship = dynamic_cast<eufe::Module*>(item_)->getTarget();
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 
