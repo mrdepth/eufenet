@@ -36,3 +36,13 @@ eufe::Item* Item::getItem()
 {
 	return item_;
 }
+
+String^ Item::getTypeName()
+{
+	return gcnew String(item_->getTypeName());
+}
+
+String^ Item::getGroupName()
+{
+	return gcnew String(item_->getGroupName());
+}

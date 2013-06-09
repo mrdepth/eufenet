@@ -3,6 +3,8 @@
 #include "types.h"
 #include "ItemAttribute.h"
 
+using namespace System;
+
 namespace eufenet {
 
 	public ref class Item
@@ -16,6 +18,8 @@ namespace eufenet {
 		TypeID getCategoryID();
 		ItemAttribute^ getAttribute(TypeID attributeID);
 		eufe::Item* getItem();
+		String^ getTypeName();
+		String^ getGroupName();
 	protected:
 		eufe::Item* item_;
 	};
