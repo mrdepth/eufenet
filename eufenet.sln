@@ -1,12 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eufenet", "eufenet\eufenet.vcproj", "{565CC1F6-279C-4026-B93E-4D472C649E5F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{64460821-8B33-4264-B11C-79F5026928FF} = {64460821-8B33-4264-B11C-79F5026928FF}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eufenet", "eufenet\eufenet.vcxproj", "{565CC1F6-279C-4026-B93E-4D472C649E5F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libeufe", "eufe\libeufe\libeufe.vcproj", "{64460821-8B33-4264-B11C-79F5026928FF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libeufe", "eufe\libeufe\libeufe.vcxproj", "{64460821-8B33-4264-B11C-79F5026928FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
