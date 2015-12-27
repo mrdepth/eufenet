@@ -29,19 +29,24 @@ bool Module::canHaveState(State state)
 	return dynamic_cast<eufe::Module*>(item_)->canHaveState((eufe::Module::State) state);
 }
 
+Module::State Module::getPreferredState()
+{
+	return (State) dynamic_cast<eufe::Module*>(item_)->getPreferredState();
+}
+
+void Module::setPreferredState(State state)
+{
+	dynamic_cast<eufe::Module*>(item_)->setPreferredState((eufe::Module::State) state);
+}
+
 Module::State Module::getState()
 {
 	return (State) dynamic_cast<eufe::Module*>(item_)->getState();
 }
 
-void Module::setState(State state)
-{
-	dynamic_cast<eufe::Module*>(item_)->setState((eufe::Module::State) state);
-}
-
 Charge^ Module::setCharge(TypeID typeID)
 {
-	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->setCharge(typeID);
+	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->setCharge(typeID).get();
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 
@@ -52,7 +57,7 @@ void Module::clearCharge()
 
 Charge^ Module::getCharge()
 {
-	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->getCharge();
+	eufe::Charge* charge = dynamic_cast<eufe::Module*>(item_)->getCharge().get();
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 
@@ -74,11 +79,6 @@ int Module::getChargeSize()
 	return dynamic_cast<eufe::Module*>(item_)->getChargeSize();
 }
 
-void Module::removeCharge()
-{
-	dynamic_cast<eufe::Module*>(item_)->removeCharge();
-}
-
 bool Module::requireTarget()
 {
 	return dynamic_cast<eufe::Module*>(item_)->requireTarget();
@@ -86,7 +86,7 @@ bool Module::requireTarget()
 
 void Module::setTarget(Ship^ target)
 {
-	dynamic_cast<eufe::Module*>(item_)->setTarget(dynamic_cast<eufe::Ship*>(target->getItem()));
+	dynamic_cast<eufe::Module*>(item_)->setTarget(dynamic_cast<eufe::Ship*>(target->getItem())->shared_from_this());
 }
 
 void Module::clearTarget()
@@ -96,7 +96,7 @@ void Module::clearTarget()
 
 Ship^ Module::getTarget()
 {
-	eufe::Ship* ship = dynamic_cast<eufe::Module*>(item_)->getTarget();
+	eufe::Ship* ship = dynamic_cast<eufe::Module*>(item_)->getTarget().get();
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 

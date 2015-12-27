@@ -18,9 +18,12 @@ namespace eufenet {
 		Gang^ getGang();
 		Area^ getArea();
 		ControlTower^ getControlTower();
+
+		void beginUpdates();
+		void commitUpdates();
+
 	private:
 		eufe::Engine* engine_;
-		SqlConnector^ sqlConnector_;
 	};
 
 }

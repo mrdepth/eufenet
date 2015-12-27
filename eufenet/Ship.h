@@ -91,7 +91,13 @@ namespace eufenet {
 		float getMaxWarpDistance();
 		float getVelocity();
 		float getSignatureRadius();
-		
+		float getMass();
+		float getVolume();
+		float getAgility();
+		float getMaxVelocityInOrbit(float r);
+		float getOrbitRadiusWithTransverseVelocity(float v);
+		float getOrbitRadiusWithAngularVelocity(float v);
+
 		//Targeting
 		int getMaxTargets();
 		float getMaxTargetRange();

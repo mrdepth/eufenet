@@ -3,14 +3,12 @@
 
 namespace eufenet {
 
-	public ref class SqlConnector
+	public ref class SqlConnector abstract
 	{
 	public:
 		SqlConnector(void);
 		virtual ~SqlConnector(void);
-		eufe::SqlConnector* getSqlConnector();
-	protected:
-		eufe::SqlConnector* sqlConnector_;
+		virtual std::shared_ptr<eufe::SqlConnector> getSqlConnector() = 0;
 	};
 
 }

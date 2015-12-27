@@ -19,55 +19,54 @@ array<Character^>^ Gang::getPilots()
 
 	int n = 0;
 
-	eufe::CharactersList::const_iterator i, end = characters.end();
-	for (i = characters.begin(); i != end; i++)
-		arr[n++] = gcnew Character(*i);
+	for (auto i: characters)
+		arr[n++] = gcnew Character(i.get());
 	return arr;
 }
 
 Character^ Gang::addPilot()
 {
-	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->addPilot();
+	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->addPilot().get();
 	return character ? gcnew Character(character) : nullptr;
 }
 
 void Gang::removePilot(Character^ character)
 {
-	dynamic_cast<eufe::Gang*>(item_)->removePilot(dynamic_cast<eufe::Character*>(character->getItem()));
+	dynamic_cast<eufe::Gang*>(item_)->removePilot(dynamic_cast<eufe::Character*>(character->getItem())->shared_from_this());
 }
 
 		
 Character^ Gang::getFleetBooster()
 {
-	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getFleetBooster();
+	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getFleetBooster().get();
 	return character ? gcnew Character(character) : nullptr;
 }
 
 Character^ Gang::getWingBooster()
 {
-	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getWingBooster();
+	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getWingBooster().get();
 	return character ? gcnew Character(character) : nullptr;
 }
 
 Character^ Gang::getSquadBooster()
 {
-	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getSquadBooster();
+	eufe::Character* character = dynamic_cast<eufe::Gang*>(item_)->getSquadBooster().get();
 	return character ? gcnew Character(character) : nullptr;
 }
 
 void Gang::setFleetBooster(Character^ fleetBooster)
 {
-	dynamic_cast<eufe::Gang*>(item_)->setFleetBooster(dynamic_cast<eufe::Character*>(fleetBooster->getItem()));
+	dynamic_cast<eufe::Gang*>(item_)->setFleetBooster(dynamic_cast<eufe::Character*>(fleetBooster->getItem())->shared_from_this());
 }
 
 void Gang::setWingBooster(Character^ wingBooster)
 {
-	dynamic_cast<eufe::Gang*>(item_)->setWingBooster(dynamic_cast<eufe::Character*>(wingBooster->getItem()));
+	dynamic_cast<eufe::Gang*>(item_)->setWingBooster(dynamic_cast<eufe::Character*>(wingBooster->getItem())->shared_from_this());
 }
 
 void Gang::setSquadBooster(Character^ squadBooster)
 {
-	dynamic_cast<eufe::Gang*>(item_)->setSquadBooster(dynamic_cast<eufe::Character*>(squadBooster->getItem()));
+	dynamic_cast<eufe::Gang*>(item_)->setSquadBooster(dynamic_cast<eufe::Character*>(squadBooster->getItem())->shared_from_this());
 }
 
 void Gang::removeFleetBooster()

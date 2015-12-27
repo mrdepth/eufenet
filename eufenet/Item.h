@@ -2,7 +2,7 @@
 #include <eufe.h>
 #include "types.h"
 #include "ItemAttribute.h"
-
+#include <cliext/memory>
 using namespace System;
 
 namespace eufenet {

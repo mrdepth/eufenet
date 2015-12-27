@@ -6,5 +6,8 @@ namespace eufenet {
 	{
 	public:
 		SqliteConnector(System::String^ databasePath);
+		virtual std::shared_ptr<eufe::SqlConnector> getSqlConnector() override;
+	private:
+		System::String^ databasePath_;
 	};
 }

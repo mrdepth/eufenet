@@ -11,8 +11,3 @@ SqlConnector::SqlConnector(void)
 SqlConnector::~SqlConnector(void)
 {
 }
-
-eufe::SqlConnector* SqlConnector::getSqlConnector()
-{
-	return sqlConnector_;
-}

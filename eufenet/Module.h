@@ -11,17 +11,20 @@ namespace eufenet {
 	public:
 		enum class Slot
 		{
-			SLOT_NONE,
+			SLOT_UNKNOWN = -1,
+			SLOT_NONE = 0,
 			SLOT_HI,
 			SLOT_MED,
 			SLOT_LOW,
 			SLOT_RIG,
 			SLOT_SUBSYSTEM,
-			SLOT_STRUCTURE
+			SLOT_STRUCTURE,
+			SLOT_MODE
 		};
 
 		enum class State
 		{
+			STATE_UNKNOWN = -1,
 			STATE_OFFLINE,
 			STATE_ONLINE,
 			STATE_ACTIVE,
@@ -41,15 +44,15 @@ namespace eufenet {
 		Slot getSlot();
 		Hardpoint getHardpoint();
 		bool canHaveState(State state);
+		State getPreferredState();
+		void setPreferredState(State state);
 		State getState();
-		void setState(State state);
 
 		Charge^ setCharge(TypeID typeID);
 		void clearCharge();
 		Charge^ getCharge();
 		array<TypeID>^ getChargeGroups();
 		int getChargeSize();
-		void removeCharge();
 		bool requireTarget();
 		void setTarget(Ship^ target);
 		void clearTarget();

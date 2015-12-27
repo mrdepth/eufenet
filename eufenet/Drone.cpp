@@ -15,7 +15,7 @@ Drone::Drone(eufe::Drone* drone): Item(drone)
 
 void Drone::setTarget(Ship^ target)
 {
-	dynamic_cast<eufe::Drone*>(item_)->setTarget(dynamic_cast<eufe::Ship*>(target->getItem()));
+	dynamic_cast<eufe::Drone*>(item_)->setTarget(dynamic_cast<eufe::Ship*>(target->getItem())->shared_from_this());
 }
 
 void Drone::clearTarget()
@@ -25,7 +25,7 @@ void Drone::clearTarget()
 
 Ship^ Drone::getTarget()
 {
-	eufe::Ship* ship = dynamic_cast<eufe::Drone*>(item_)->getTarget();
+	eufe::Ship* ship = dynamic_cast<eufe::Drone*>(item_)->getTarget().get();
 	return ship ? gcnew Ship(ship) : nullptr;
 }
 
@@ -37,7 +37,7 @@ bool Drone::dealsDamage()
 
 Charge^ Drone::getCharge()
 {
-	eufe::Charge* charge = dynamic_cast<eufe::Drone*>(item_)->getCharge();
+	eufe::Charge* charge = dynamic_cast<eufe::Drone*>(item_)->getCharge().get();
 	return charge ? gcnew Charge(charge) : nullptr;
 }
 

@@ -4,3 +4,6 @@
 *.suo
 /Backup/
 /Template/
+/ipch/
+/.vs/
+*.sdf

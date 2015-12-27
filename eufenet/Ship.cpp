@@ -14,7 +14,7 @@ Ship::Ship(eufe::Ship* ship): Item(ship)
 
 Module^ Ship::addModule(TypeID typeID)
 {
-	eufe::Module*  module = dynamic_cast<eufe::Ship*>(item_)->addModule(typeID);
+	eufe::Module*  module = dynamic_cast<eufe::Ship*>(item_)->addModule(typeID).get();
 	return module ? gcnew Module(module) : nullptr;
 }
 
@@ -29,32 +29,31 @@ array<Module^>^ Ship::addModules(array<TypeID>^ typeIDs)
 
 	int n = 0;
 
-	eufe::ModulesList::const_iterator i, end = modules.end();
-	for (i = modules.begin(); i != end; i++)
-		arr[n++] = *i ? gcnew Module(*i) : nullptr;
+	for (auto i: modules)
+		arr[n++] = i ? gcnew Module(i.get()) : nullptr;
 	return arr;
 }
 
 Module^ Ship::replaceModule(Module^ oldModule, TypeID typeID)
 {
-	eufe::Module* module = dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule->getItem()), typeID);
+	eufe::Module* module = dynamic_cast<eufe::Ship*>(item_)->replaceModule(dynamic_cast<eufe::Module*>(oldModule->getItem())->shared_from_this(), typeID).get();
 	return module ? gcnew Module(module) : nullptr;
 }
 
 void Ship::removeModule(Module^ module)
 {
-	dynamic_cast<eufe::Ship*>(item_)->removeModule(dynamic_cast<eufe::Module*>(module->getItem()));
+	dynamic_cast<eufe::Ship*>(item_)->removeModule(dynamic_cast<eufe::Module*>(module->getItem())->shared_from_this());
 }
 
 Drone^ Ship::addDrone(TypeID typeID)
 {
-	eufe::Drone* drone = dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID);
+	eufe::Drone* drone = dynamic_cast<eufe::Ship*>(item_)->addDrone(typeID).get();
 	return drone ? gcnew Drone(drone) : nullptr;
 }
 
 void Ship::removeDrone(Drone^ drone)
 {
-	dynamic_cast<eufe::Ship*>(item_)->removeDrone(dynamic_cast<eufe::Drone*>(drone->getItem()));
+	dynamic_cast<eufe::Ship*>(item_)->removeDrone(dynamic_cast<eufe::Drone*>(drone->getItem())->shared_from_this());
 }
 
 array<Module^>^ Ship::getModules()
@@ -64,9 +63,8 @@ array<Module^>^ Ship::getModules()
 
 	int n = 0;
 
-	eufe::ModulesList::const_iterator i, end = modules.end();
-	for (i = modules.begin(); i != end; i++)
-		arr[n++] = *i ? gcnew Module(*i) : nullptr;
+	for (auto i: modules)
+		arr[n++] = i ? gcnew Module(i.get()) : nullptr;
 	return arr;
 }
 
@@ -78,9 +76,8 @@ array<Module^>^ Ship::getModules(Module::Slot slot)
 
 	int n = 0;
 
-	eufe::ModulesList::const_iterator i, end = modules.end();
-	for (i = modules.begin(); i != end; i++)
-		arr[n++] = *i ? gcnew Module(*i) : nullptr;
+	for (auto i : modules)
+		arr[n++] = i ? gcnew Module(i.get()) : nullptr;
 	return arr;
 }
 
@@ -91,9 +88,8 @@ array<Drone^>^  Ship::getDrones()
 
 	int n = 0;
 
-	eufe::DronesList::const_iterator i, end = drones.end();
-	for (i = drones.begin(); i != end; i++)
-		arr[n++] = *i ? gcnew Drone(*i) : nullptr;
+	for (auto i : drones)
+		arr[n++] = i ? gcnew Drone(i.get()) : nullptr;
 	return arr;
 }
 
@@ -313,7 +309,37 @@ float Ship::getSignatureRadius()
 	return dynamic_cast<eufe::Ship*>(item_)->getSignatureRadius();
 }
 
-		
+float Ship::getMass()
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getMass();
+}
+
+float Ship::getVolume()
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getVolume();
+}
+
+float Ship::getAgility()
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getAgility();
+}
+
+float Ship::getMaxVelocityInOrbit(float r)
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getMaxVelocityInOrbit(r);
+}
+
+float Ship::getOrbitRadiusWithTransverseVelocity(float v)
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getOrbitRadiusWithTransverseVelocity(v);
+}
+
+float Ship::getOrbitRadiusWithAngularVelocity(float v)
+{
+	return dynamic_cast<eufe::Ship*>(item_)->getOrbitRadiusWithAngularVelocity(v);
+}
+
+
 //Targeting
 int Ship::getMaxTargets()
 {
